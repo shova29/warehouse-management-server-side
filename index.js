@@ -62,7 +62,16 @@ async function run() {
       res.send(result);
     });
 
-    //DELETE
+    //My Item API
+    app.get("/inventory", async (req, res) => {
+      const email = req.query.email;
+      const query = { email: email };
+      const cursor = inventoryCollection.find(query);
+      const orders = await cursor.toArray();
+      res.send(orders);
+    });
+
+    //DELETE Item API
     app.delete("/inventory/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
