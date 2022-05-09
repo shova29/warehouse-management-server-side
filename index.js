@@ -54,6 +54,13 @@ async function run() {
       );
       res.send(result);
     });
+
+    //Add Item POST API
+    app.post("/inventory", async (req, res) => {
+      const inventoryItem = req.body;
+      const result = await inventoryCollection.insertOne(inventoryItem);
+      res.send(result);
+    });
   } finally {
   }
 }
