@@ -91,8 +91,8 @@ async function run() {
       if (email === decodedEmail) {
         const query = { email: email };
         const cursor = inventoryCollection.find(query);
-        const addItem = await cursor.toArray();
-        res.send(addItem);
+        const items = await cursor.toArray();
+        res.send(items);
       } else {
         res.status(403).send({ message: "Forbidden Access" });
       }
